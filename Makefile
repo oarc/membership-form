@@ -16,6 +16,14 @@ pdf : $(PDF_FILES)
 	@libreoffice --headless --convert-to pdf $^ \
   "-env:UserInstallation=file:///tmp/libreofficebug"
 
+.PHONY : watermark
+watermark : watermark.pdf
+watermark.pdf : Makefile
+	@convert -background none -fill grey \
+  -geometry +50+0 \
+  -font DejaVu-Sans-Condensed -pointsize 10 \
+  label:'commit $(shell git rev-parse HEAD)' -set label '' -page letter $@
+
 .PHONY : clean
 clean :
 	@rm -f $(GENERATED_FILES)

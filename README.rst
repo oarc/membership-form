@@ -43,3 +43,10 @@ OpenOffice and StarOffice).
 
 .. _LibreOffice: https://www.libreoffice.org/
 .. _family: https://en.wikipedia.org/wiki/LibreOffice
+
+
+TODO
+----
+
+* DEPRECATE http://www.oarc.net/media/Membership_Application.pdf
+* DEPRECATE http://www.oarc.net/media/OARC_Form.pdf

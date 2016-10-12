@@ -7,10 +7,27 @@ electronic form and submitted to our club's Membership Coordinator.
 .. _OARC: http://oarc.net
 
 
+Building
+--------
+
+To create the document, simply type::
+
+    make
+
+This assumes you have LibreOffice_ and GNU Make installed on your system.  You
+may also simply open the document in LibreOffice_ (or equivalent) and click on
+"Export (Directly) as PDF".
+
+This produces a hybrid_ PDF that contains an embedded ODF payload that is
+editable in LibreOffice et. al.
+
+.. _hybrid: https://help.libreoffice.org/Common/Export_as_PDF#Hybrid_PDF_.28embed_ODF_file.29
+
+
 Fonts
 -----
 
-The fonts used are the DejaVu_ fonts "DejaVu Sans" and "DejaVu Sans Bold"
+The fonts used are the DejaVu_ fonts "DejaVu_ Sans" and "DejaVu_ Sans Bold"
 (wikipedia_).  These are available under a free license_.
 
 .. _DejaVu: http://dejavu-fonts.org/wiki/Main_Page

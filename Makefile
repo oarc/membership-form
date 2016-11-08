@@ -3,11 +3,12 @@ SHELL := /bin/bash
 SOURCE_FILES = $(wildcard *.odt)
 
 PDF_FILES = $(SOURCE_FILES:.odt=.pdf)
+FDF_FILES = $(SOURCE_FILES:.odt=.fdf)
 
-GENERATED_FILES ?= $(PDF_FILES)
+GENERATED_FILES ?= $(PDF_FILES) $(FDF_FILES)
 
 .PHONY : all
-all : $(GENERATED_FILES)
+all : pdf fdf
 
 .PHONY : pdf
 pdf : $(PDF_FILES)
@@ -15,6 +16,12 @@ pdf : $(PDF_FILES)
 %.pdf : %.odt
 	@libreoffice --headless --convert-to pdf $^ \
   "-env:UserInstallation=file:///tmp/libreofficebug"
+
+.PHONY : fdf
+fdf : $(FDF_FILES)
+
+%.fdf : %.pdf
+	@pdftk $^ generate_fdf output $@
 
 .PHONY : watermark
 watermark : watermark.pdf

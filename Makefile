@@ -7,30 +7,30 @@ FDF_FILES = $(SOURCE_FILES:.odt=.fdf)
 
 GENERATED_FILES ?= $(PDF_FILES) $(FDF_FILES)
 
-.PHONY : all
-all : pdf fdf
+.PHONY: all
+all: pdf fdf
 
-.PHONY : pdf
-pdf : $(PDF_FILES)
+.PHONY: pdf
+pdf: $(PDF_FILES)
 
-%.pdf : %.odt
+%.pdf: %.odt
 	@libreoffice --headless --convert-to pdf $^ \
-  "-env:UserInstallation=file:///tmp/libreofficebug"
+  '-env:UserInstallation=file:///tmp/libreofficebug'
 
-.PHONY : fdf
-fdf : $(FDF_FILES)
+.PHONY: fdf
+fdf: $(FDF_FILES)
 
-%.fdf : %.pdf
+%.fdf: %.pdf
 	@pdftk $^ generate_fdf output $@
 
-.PHONY : watermark
-watermark : watermark.pdf
-watermark.pdf : Makefile
+.PHONY: watermark
+watermark: watermark.pdf
+watermark.pdf: Makefile
 	@convert -background none -fill grey \
   -geometry +50+0 \
   -font DejaVu-Sans-Condensed -pointsize 10 \
   label:'commit $(shell git rev-parse HEAD)' -set label '' -page letter $@
 
-.PHONY : clean
-clean :
+.PHONY: clean
+clean:
 	@rm -f $(GENERATED_FILES)
